@@ -1,0 +1,41 @@
+#lang racket
+(define (expr1 a b) (/ (+ (expt a 2) (* 3 b)) 2))
+(define (expr2 a b) (+ a (expt b 2)))
+
+(define (compare-expr a b)
+  (let ([e1 (expr1 a b)]
+        [e2 (expr2 a b)])
+    (cond
+      [(> e1 e2) "expr1 größer   "]
+      [(< e1 e2) "expr2 größer   "]
+      [else      "gleich         "])))
+
+;(define (compare-expr a b)
+;  (cond 
+;    [( > (expr1 a b) (expr2 a b))
+;       (display "expr1 größer   ")]
+;    [( < (expr1 a b) (expr2 a b))
+;       (display "expr2 größer   ")]
+;    [ else
+;       (display "gleich   ")]))
+
+;(define (expr1 a)
+;  ( + a 1))
+;(define (expr2 b)
+;  ( + b 1))
+
+(compare-expr 2 3) 
+(compare-expr 4 1)
+(compare-expr 2 2)
+(compare-expr -2 2) ;edgecase
+(compare-expr 0 0)  ;edgecase
+
+
+-----------------------------------------------
+
+
+
+
+
+
+
