@@ -1,7 +1,10 @@
 # Aufgabe 1
+~~~
 (define x ( - ( / (+ 9 6) (* (- 3 1) 5 )) ( * ( -  7/8 2) 4)))
+~~~
 
 # Aufgabe 2
+~~~
 (define (g u v w)
   (+ (/ (- v (* 7 u)) (- u w)) (/ (+ u v) (- (* w 6) v ))))
 
@@ -9,8 +12,10 @@
 2\frac{11}{16}
 (g 3 11 2)
 4
+~~~
 
 # Aufgabe 3
+~~~
 (define (my-max x y)
   (if (> x y) x y))
 
@@ -20,8 +25,10 @@
 23
 (my-max 4 4)
 4
+~~~
 
 # Aufgabe 4
+~~~
 (define ( groesser-zehn? x)
   (> x 10))
 (groesser-zehn? 4)
@@ -30,8 +37,10 @@
 #f
 (groesser-zehn? 15)
 #t
+~~~
 
 # Aufgabe 5
+~~~
 (define ( groesserp? x y z)
   (> ( + x y ) z))
 
@@ -41,27 +50,33 @@
 #t
 (groesserp? 3 3 6)
 #f
+~~~
 
 # Aufgabe 6
+~~~
 (define (squared-max x y z)
   (max ( * x x ) (* y y) (* z z)))
 
 
 ( squared-max 2 -3 5)
 25
+~~~
 
 # Tafelübung 1
+~~~
 a
 
 b
 
 c 
+~~~
 Exercise 1.1: Below is a sequence of expressions. What is
 the result printed by the interpreter in response to each ex-
 pression? Assume that the sequence is to be evaluated in
 the order in which it is presented
 ( Zeilen mit "-" vornedran sind die Antworten auf die darüberstehenden expressions)
 
+~~~
 
 10
 - 10
@@ -108,3 +123,4 @@ the order in which it is presented
         (else -1))
     (+ a 1))
 - 16
+~~~
