@@ -2,7 +2,7 @@
 
 
 
-''
+~~~
 (define ( nat-wurzel x)
   (define (loop odd sum count)
   (cond ((= sum x) count)
@@ -11,13 +11,13 @@
                     (+ sum (+ odd 2))
                     (+ count 1)))))
   (loop 1 1 1))
-''
+~~~
 
 
 
 # Aufgabe 2
 
-''
+~~~
 ;(define ( zahl-umdrehen x)
 ;  (dreh-iter x))
 ;(define dreh-iter 
@@ -44,4 +44,4 @@
 ;neue letzte stelle
 ;define eineweniger (quotient x 10)
 ;(remainder (qu
-''
+~~~
