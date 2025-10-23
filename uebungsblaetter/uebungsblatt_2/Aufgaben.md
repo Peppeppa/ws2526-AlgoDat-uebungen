@@ -3,14 +3,18 @@
 
 
 ~~~
-(define ( nat-wurzel x)
-  (define (loop odd sum count)
-  (cond ((= sum x) count)
-        ((> sum x) #f)
-        (else (loop (+ odd 2)
-                    (+ sum (+ odd 2))
-                    (+ count 1)))))
-  (loop 1 1 1))
+(define (nat-wurzel x)
+  (define (iter odd sum count)
+    (cond ((= sum x) count)
+          ((< sum x) (iter (+ odd 1) (+ sum odd) (+ count 1)))
+          (else #f)))
+    (iter 1 1 1))
+
+(nat-wurzel 2)
+(nat-wurzel -2)
+(nat-wurzel 0)
+(nat-wurzel 1)
+(nat-wurzel 16)
 ~~~
 
 
@@ -18,30 +22,52 @@
 # Aufgabe 2
 
 ~~~
-;(define ( zahl-umdrehen x)
-;  (dreh-iter x))
-;(define dreh-iter 
+(define (zahl-umdrehen x)
+  (define (loop abzubauen umgedreht)
+    (if (= abzubauen 0)
+        umgedreht
+        (loop (quotient abzubauen 10) (+ (* 10 umgedreht) (remainder abzubauen 10)))))
+  (loop x 0))
 
 
-;  (define xzerlegt (quotient x 10))
-;  (define letzteStelle (remainder x 10)
+(zahl-umdrehen 123)
+(zahl-umdrehen 4497821)
+(zahl-umdrehen 597050)
+~~~
+
+# Aufgabe 3
+
+~~~
 
 
-  ;(define vorletztestelle (xzerlegt letztestelle)
-  ;  (define (remainder xzerlegt 10)
-
-      
-  ;(define neuesx (+ letzteStelle (* 10 vorletztestelle)
+(define ( aufsteigendes-produkt? a b c d)
+  (and (< a b c) (= (* a b c) d)))
 
 
-;   letztestelle                  remainder x 10                 stellenzähler beginnt bei 0 -> *10 hoch0
-;  +vorletztestelle*expt 10 n     quotient x 10 ->               stellenzähler +1
+
+(aufsteigendes-produkt? 1 2 3 6) ;#t
+(aufsteigendes-produkt? 2 1 3 6) ;#f
+(aufsteigendes-produkt? 2 3 5 11);#f
 
 
-;   bau neue x
-;     (* letztestelle  (expt 10 stellenzähler))
+~~~
 
-;neue letzte stelle
-;define eineweniger (quotient x 10)
-;(remainder (qu
+
+# Aufgabe 4
+
+~~~
+(define (f1 a b)
+  (and (and (and (not (or a b))(or a b)) a) (not b)))
+
+
+(define (f2 a b c)
+  (or (or (or a (and a b (not c)))(and (not a) c))(and (not (and a b)) c)))
+
+
+
+(define (xor a b)
+  (and (or a b) (not (and a b))))
+
+(define (f3 a b c d)
+  (and (and (xor (not a) b) (not (or a (not b) c)))(or (not d) (not c) (not b) (not a))))
 ~~~
