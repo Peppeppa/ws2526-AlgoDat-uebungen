@@ -47,3 +47,50 @@
 
 
 ~~~
+
+
+# Aufgabe 3 
+
+~~~
+
+(define (konst-addierer n)
+  (lambda (a) (+ a n)))
+
+(define plus1 (konst-addierer 1))
+
+(define plus10 (konst-addierer 10))
+
+(plus1 99)
+(plus10 98)
+
+
+
+~~~
+
+
+# Aufgabe 4 
+
+~~~
+
+(define (ggt a b)
+  (if (= b 0)
+      a
+      (ggt b (remainder a b))))
+
+
+(define (konst-ggt b)
+  (lambda (x)
+    (ggt x b)))
+
+(define ggt10 (konst-ggt 10))
+(ggt10 25)
+(ggt10 27)
+
+(define ggt987 (konst-ggt 987))
+(ggt987 762351)
+
+
+~~~
+
+
+
