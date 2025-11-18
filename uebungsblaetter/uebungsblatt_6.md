@@ -23,3 +23,27 @@
 
 ~~~
 
+
+
+
+# Aufgabe 2 
+
+~~~
+
+(define (gleiche-ziffern zahl)
+  (define (loop n)
+    (if (< n 10)
+        n
+        (loop (quotient n 10))))
+
+  (define (passt? n)
+    (= (loop n) (remainder n 10)))
+
+  (if (passt? zahl)
+      zahl
+      (gleiche-ziffern (+ zahl 1))))
+
+(gleiche-ziffern 32431548)
+
+
+~~~
