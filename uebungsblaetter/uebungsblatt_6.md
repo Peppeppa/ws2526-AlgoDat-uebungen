@@ -93,4 +93,42 @@
 ~~~
 
 
+# Aufgabe 5
 
+~~~
+
+(define (paar-operation op)
+  (lambda (x)
+    (op (car x) (cdr x))))
+
+
+(define paar=? (paar-operation =))
+
+(define paar+? (paar-operation +))
+
+(define paar<? (paar-operation <))
+
+~~~
+
+# Aufgabe 6
+
+~~~
+
+#lang racket
+; https :// docs. racket-lang .org/sdraw/
+( require sdraw)
+(sdraw (list 1 2) #:null-style '/)
+(define nil (list))
+
+(define struktur1 (cons (cons 24 (cons 1 2)) (cons 20 (cons 1 1))))
+(define struktur2 (cons (cons 7 (cons 2 (cons 3 (cons 1 nil))))nil))
+(define struktur3 (cons (list 3 3) (list 3 3 3 3)))
+(define struktur4 (cons (cons (cons nil (cons 6 (cons 1 (cons 0 (cons 2 4))))) (cons 3 3)) (list 10 7 8 9 3)))
+
+(sdraw struktur1 #:null-style '/)
+(sdraw struktur2 #:null-style '/)
+(sdraw struktur3 #:null-style '/)
+(sdraw struktur4 #:null-style '/)
+
+
+~~~
