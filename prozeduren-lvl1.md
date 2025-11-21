@@ -41,5 +41,20 @@
 
 ~~~
 
+# einstellige quersumme
+
+ ~~~
+(define (einstellige-quersumme zahl)
+  (define (iter zahl ergebnis)
+           (if (= 0 zahl)
+               ergebnis
+               (iter (quotient zahl 10) (+ ergebnis (remainder zahl 10)))))
+  (iter zahl 0))
+
+(einstellige-quersumme 123)
+
+~~~
+
+
 
 
