@@ -56,5 +56,64 @@
 ~~~
 
 
+# Palindrom?
+
+~~~
+  (define (umdrehen n)
+    (define (rev n new)
+      (if (= n 0)
+          new
+          (rev (quotient n 10)(+ (* 10 new) (remainder n 10)))))
+    (rev n 0))
+
+(define (palindrom n)
+  (if (= n (umdrehen n))
+      #t
+      (- n (umdrehen n))))
+
+
+(palindrom 123)
+(palindrom 12321)
+(palindrom 123211)
+~~~
+
+# vergleich mit Zähler
+
+~~~
+
+(define (vergleich zahl op)
+  (let loop ((n zahl)
+             (count 0))
+    (let * ((rechts (remainder n 10))
+            (rest (quotient n 10)))
+      (if (= rest 0)
+          count
+          (let ((links (remainder rest 10)))
+            (loop rest
+                  (if (op links rechts)
+                      (+ 1 count)
+                      count)))))))
+
+(vergleich 112233 <)
+(vergleich 112233 =)
+
+~~~
+
+
+# Einstellige Quersumme
+
+~~~
+(define (einstellige-quersumme zahl)
+  (let loop ((n zahl)
+             (sum 0))
+    (if (= n 0)
+        sum
+        (loop (quotient n 10)
+              (+ sum (remainder n 10))))))
+
+(einstellige-quersumme 123)
+
+
+~~~
 
 
