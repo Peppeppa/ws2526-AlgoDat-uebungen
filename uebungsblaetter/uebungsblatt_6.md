@@ -21,6 +21,24 @@
 (zaehlen 10 100 1)
 
 
+(define (zaehlen start ende n)
+  (let loop ((zahl start)
+             (ergebnis 0)
+             (zaehler 0))
+    (cond ((= zahl ende) 0)
+          ((= zaehler n) ergebnis)
+          (else (if (and (= (remainder zahl 3) 0)(= (remainder zahl 7) 0))
+                    (loop (+ 1 zahl)
+                          zahl
+                          (+ 1 zaehler))
+                    (loop (+ 1 zahl)
+                          ergebnis
+                          zaehler))))))
+                          
+    
+(zaehlen 10 100 2)
+
+
 ~~~
 
 
