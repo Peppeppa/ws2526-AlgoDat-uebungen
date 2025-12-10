@@ -107,3 +107,101 @@
 
 ~~~
 
+
+
+# Ableiten
+
+~~~
+
+#lang racket
+
+
+(define (liste-ref element n)
+  (if (= n 1)
+      (car element)
+      (liste-ref (cdr element)(- n 1))))
+
+(liste-ref (list 1 2 3 4) 3)
+
+(define (laenge elemente)
+  (if (null? elemente) 0
+      (+ 1 (laenge (cdr elemente)))))
+
+(laenge (list 1 2 3))
+
+
+;(define (laenge2 elemente)
+;  (define (laenge-iter a zaehler)
+;    (if (null? a)
+;        zaehler
+;        (laenge2 (cdr a) (+ 1 zaehler))))
+;  (laenge-iter elemente 0))
+
+(define (laenge3 elemente)
+  (define (laenge-iter a zaehler)
+    (if (null? a)
+        zaehler
+        (laenge-iter (cdr a) (+ 1 zaehler))))
+  (laenge-iter elemente 0))
+
+(laenge3 (list 1 2 3 4 5))
+
+(define (variable? x ) (symbol? x))
+(define (gleiche-variable? v1 v2)
+  (and (variable? v1) (variable? v2) (eq? v1 v2)))
+(define (summe? x)
+  (and (pair? x) (eq? (car x) '+)))
+(define (addend x) (cadr x))
+(define (augend x) (caddr x))
+(define (produkt? x)
+  (and (pair? x) (eq? (car x) '*)))
+(define (multiplikant x) (cadr x))
+(define (multiplikator x) (caddr x))
+(define (=number? exp num)
+  (and (number? exp) (= exp num)))
+;(define (konstr-summe a1 a2) (list '+ a1 a2))
+(define (konstr-summe a1 a2)
+  (cond ((=number? a1 0) a2)
+        ((=number? a2 0) a1)
+        ((and (number? a1) (number? a2)) (+ a1 a2))
+        (else (list '+ a1 a2))))
+;(define (konstr-produkt a1 a2) (list '* a1 a2))
+(define (konstr-produkt a1 a2)
+  (cond ((=number? a1 0) a2)
+        ((=number? a2 0) a1)
+        ((and (number? a1) (number? a2)) (* a1 a2))
+        (else (list '* a1 a2))))
+  
+
+ 
+(define (ableiten ausdruck var)
+  (cond ((number? ausdruck) 0)
+        ((variable? ausdruck) (if (gleiche-variable? ausdruck var)
+                                  1
+                                  0)) 
+        ((summe? ausdruck) (konstr-summe (ableiten (addend ausdruck) var)
+                                         (ableiten (augend ausdruck) var)))
+        ((produkt? ausdruck) (konstr-summe
+                              (konstr-produkt (ableiten (multiplikant ausdruck) var)
+                                             (ableiten (multiplikator ausdruck) var))
+                              (konstr-produkt (ableiten (multiplikant ausdruck) var)
+                                             (ableiten (multiplikator ausdruck) var))))
+        (else
+         display "error" ausdruck)))
+
+
+(ableiten '(* x 3) 'x)
+
+(ableiten '(* (* x y) (+ x 3)) 'x)
+
+
+(ableiten '(* x y) 'x)
+
+
+
+
+
+
+
+          
+~~~
